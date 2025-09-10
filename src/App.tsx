@@ -20,7 +20,7 @@ function App() {
       setMessage("Please enter a number first!");
     } else if (currency1 === "USD" && currency2 === "IRR") {
       convertedMoney = (Number(inputVal) * 99250).toLocaleString("de-DE");
-      setMessage(`${convertedMoney}ريال`);
+      setMessage(`${convertedMoney}تومان`);
     } else if (currency1 === "IRR" && currency2 === "USD") {
       convertedMoney = (Number(inputVal) / 99250).toLocaleString("de-DE");
       setMessage(`${convertedMoney}$`);
