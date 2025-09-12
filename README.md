@@ -1,54 +1,56 @@
 # 💰 Convert Money
 
-A simple currency converter built with React.js, TypeScript, Tailwind CSS, and Material UI.  
-Easily convert amounts between USD and Toman.
+A dynamic currency converter built with React.js, TypeScript, Tailwind CSS, and Material UI.  
+Easily convert amounts between USD and Toman with a custom exchange rate provided by the user.
 
 ---
 
 ## 🚀 About the Project
+This project is a simple yet powerful currency converter where users can:  
+- Enter a custom exchange rate for USD → Toman conversion.  
+- Convert amounts between USD and Toman based on the entered rate.  
 
-This project is a currency converter that allows users to convert a number between USD and Toman.  
-The conversion rate is fixed based on the latest USD to Toman rate.  
-Built with React.js and Vite, it uses TypeScript for type safety, Tailwind CSS for styling, and Material UI for UI components.
+The app ensures input validation and provides a smooth user experience with a clean UI powered by Material UI and Tailwind CSS.  
+It is built using React.js with Vite and strongly typed with TypeScript.
 
 ---
 
 ## ✨ Features
-
-- Convert any numeric value between USD and Toman
-- Select source and target currency
-- Display conversion result immediately after clicking Convert
-- Show informative error messages if:
-  - No number is entered
-  - The source and target currencies are the same
+- Dynamic exchange rate: user enters the current USD → Toman rate.  
+- Currency conversion between USD and Toman.  
+- Input validation:  
+  - Both exchange rate and amount must be valid numbers.  
+  - If inputs are invalid, an error message is shown.  
+- Disabled button state:  
+  - The Convert button stays disabled until both inputs are valid.  
+- Responsive UI built with Material UI and Tailwind CSS.  
 
 ---
 
 ## 📂 Project Structure
-
-- src/ – Source code
-  - App.tsx – Main component
-  - components/ – Reusable UI components
-  - styles/ – Tailwind CSS configurations and custom styles
-- vite.config.ts – Vite configuration
+- src/ – Source code  
+  - App.tsx – Main component with state management and validation logic  
+  - components/ – Reusable UI components (inputs, button, result display)  
+  - styles/ – Tailwind CSS configuration and global styles  
+- vite.config.ts – Vite configuration  
 
 ---
 
 ## ⚡️ How to Run
-
-1. Clone the repository or download the files.
-2. Install dependencies by running:
-
-   npm install
-
-3. Start the development server:
-
-   npm run dev
-
-4. Open the provided local URL in your browser and use the converter.
+1. Clone the repository or download the files.  
+2. Install dependencies by running:  
+   
+    npm install
+    
+ 
+3. Start the development server:  
+   
+    npm run dev
+    
+ 
+4. Open the provided local URL in your browser and start converting currencies.
 
 ---
 
 ## 📝 License
-
 This project is free to use for personal learning and practice.
