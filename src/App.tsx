@@ -34,11 +34,18 @@ function App() {
       setMessage(
         currency2 === "IRR"
           ? `${result.toLocaleString("fa-IR")}تومان`
-          : `${result.toLocaleString("en-US")}`
+          : `${result.toLocaleString("en-US")} $`
       );
+      setInputVal("");
     } catch (err: any) {
       setMessage(err.message);
     }
+  }
+
+  function handleSwap() {
+    setCurrency1(currency2);
+    setCurrency2(currency1);
+    setMessage("");
   }
 
   const isValid =
@@ -74,18 +81,22 @@ function App() {
           />
         </div>
 
-        <div className="flex gap-24 mb-[1rem]">
-          <div>
-            <h3 className="text-[#708993]">تبدیل از:</h3>
-            <SelectInput value={currency1} onChange={setCurrency1} />
-          </div>
-          <div>
-            <h3 className="text-[#708993]">تبدیل به:</h3>
-            <SelectInput value={currency2} onChange={setCurrency2} />
-          </div>
+        <div className="w-full flex items-center justify-around">
+          <h3 className="text-[#708993]">تبدیل از:</h3>
+          <h3 className="text-[#708993]">تبدیل به:</h3>
+        </div>
+        <div className="flex items-center gap-4">
+          <SelectInput value={currency1} onChange={setCurrency1} />
+          <button
+            onClick={handleSwap}
+            className="text-[1.3rem] hover:cursor-pointer"
+          >
+            🔁
+          </button>
+          <SelectInput value={currency2} onChange={setCurrency2} />
         </div>
 
-        <div className="w-full text-center text-[1.3rem]">
+        <div className="w-full text-center text-[1.3rem] mb-[1rem]">
           <h2>{message}</h2>
         </div>
 
@@ -94,7 +105,7 @@ function App() {
           disabled={!isValid}
           className="bg-[#708993] text-blue-50 p-[0.5rem] rounded-[0.5rem] transition-colors duration-300 hover:text-[#708993] hover:bg-[#708993]/40 hover:cursor-pointer disabled:bg-gray-300 disabled:text-[#708993]"
         >
-          Convert
+          تبدیل💰
         </button>
       </div>
     </>
