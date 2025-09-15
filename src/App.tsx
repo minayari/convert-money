@@ -70,14 +70,14 @@ function App() {
           />
         </div>
 
-        <div className="w-full flex justify-between items-center p-2 mb-[2rem]">
+        <div className="w-full flex justify-between items-center p-2 mb-[2rem] max-md:flex-col max-md:gap-2 max-sm:w-[90%]" >
           <div>
             <label className="text-gray-400">From</label>
             <InputDropDown value={currency1} onChange={setCurrency1} />
           </div>
           <div
             onClick={handleSwap}
-            className="w-[3rem] transition-color duration-300 rounded-md hover:cursor-pointer hover:bg-gray-100"
+            className="w-[3rem] max-md:w-[2rem] transition-color duration-300 rounded-md hover:cursor-pointer hover:bg-gray-100"
           >
             <img src={swapIcon} alt="swap" />
           </div>
