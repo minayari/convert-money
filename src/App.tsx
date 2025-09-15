@@ -58,7 +58,7 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center w-[70%] mx-auto mt-[5rem] p-[1.5rem] rounded-[1rem] shadow-lg shadow-gray-500/50 ">
+      <div className="flex flex-col items-center w-[70%] mx-auto mt-[5rem] p-8 rounded-[1rem] shadow-lg shadow-gray-500/50 ">
         <div className="w-full mb-[2rem]">
           <label className="text-gray-400">Enter the USD rate</label>
           <input
