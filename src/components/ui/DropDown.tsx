@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import usdFlag from "../../assets/img/usd_flag.png";
-import iranFlag from "../../assets/img/iran_flag.png";
+import usdFlagImage from "../../assets/img/usd_flag.png";
+import iranFlagImage from "../../assets/img/iran_flag.png";
 
-type Currency = "USD" | "IRR";
+type TCurrency = "USD" | "IRR";
 
-interface InputDropDownProps {
-  value: Currency;
-  onChange: (value: Currency) => void;
+interface IInputDropDownProps {
+  value: TCurrency;
+  onChange: (value: TCurrency) => void;
 }
 
-export default function InputDropDown({ value, onChange }: InputDropDownProps) {
+export default function DropDown({ value, onChange }: IInputDropDownProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const handleSelect = (item: Currency) => {
+  const handleSelect = (item: TCurrency) => {
     onChange(item);
     setOpen(false);
   };
@@ -38,29 +38,29 @@ export default function InputDropDown({ value, onChange }: InputDropDownProps) {
       <input
         type="text"
         value={value}
-        onChange={(e) => onChange(e.target.value as Currency)}
+        onChange={(e) => onChange(e.target.value as TCurrency)}
         onClick={() => setOpen(!open)}
         placeholder="chose..."
         className="w-full p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none cursor-pointer"
       />
       {open && (
-        <div className="absolute top-full mt-1 w-full border rounded-md bg-white z-10">
+        <div className="absolute top-full mt-1 w-full border border-gray-400 rounded-md bg-white z-10">
           <ul>
             <li
               onClick={() => handleSelect("USD")}
               className="p-2 cursor-pointer hover:bg-gray-100"
             >
               <div className="flex items-center">
-                <img className="w-[2rem]" src={usdFlag} alt="flag"/>
+                <img className="w-[2rem]" src={usdFlagImage} alt="flag" />
                 USD
               </div>
             </li>
             <li
               onClick={() => handleSelect("IRR")}
-              className="p-2 cursor-pointer hover:bg-gray-100"
+              className="p-2 cursor-pointer hover:bg-gray-200"
             >
               <div className="flex items-center">
-                <img className="w-[2rem]" src={iranFlag} alt="flag" />
+                <img className="w-[2rem]" src={iranFlagImage} alt="flag" />
                 IRR
               </div>
             </li>
