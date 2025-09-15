@@ -1,5 +1,6 @@
 import * as React from "react";
 import InputDropDown from "./components/ui/InputDropDown";
+import swapIcon from "./assets/img/icons8-swap-64.png";
 
 type Currency = "USD" | "IRR";
 
@@ -33,8 +34,8 @@ function App() {
       const result = convert(value, currency1, currency2, rateValue);
       setMessage(
         currency2 === "IRR"
-          ? `${result.toLocaleString("fa-IR")}تومان`
-          : `${result.toLocaleString("en-US")} $`
+          ? `${result.toLocaleString("en-US")} IRR`
+          : `${result.toLocaleString("en-US")} USD`
       );
     } catch (err: any) {
       setMessage(err.message);
@@ -57,39 +58,43 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-between bg-[#708993]/30 w-[35rem] mx-auto mt-[5rem] p-[1.5rem] rounded-[1rem]">
-        <div className="w-full flex flex-col items-start mb-[2rem]">
-          <label htmlFor="">Enter the USD rate</label>
+      <div className="flex flex-col items-center w-[70%] mx-auto mt-[5rem] p-[1.5rem] rounded-[1rem] shadow-lg shadow-gray-500/50 ">
+        <div className="w-full mb-[2rem]">
+          <label className="text-gray-400">Enter the USD rate</label>
           <input
-            className="w-full p-[0.5rem] border border-solid border-[#708993] rounded-[0.5rem] focus:outline-none"
+            className="w-full p-[0.5rem] bg-gray-100 rounded-[0.5rem] focus:outline-none"
             type="number"
             value={rate}
             onChange={(event) => setRate(event.target.value)}
-            placeholder="in IRR"
+            placeholder="ex 10.000 IRR"
           />
         </div>
-        <div className="w-full flex items-center justify-around">
+
+        <div className="w-full flex justify-between items-center p-2 mb-[2rem]">
           <div>
-            <label htmlFor="">From</label>
+            <label className="text-gray-400">From</label>
             <InputDropDown value={currency1} onChange={setCurrency1} />
           </div>
-          <button className="hover:cursor-pointer" onClick={handleSwap}>
-            Swap
-          </button>
+          <div
+            onClick={handleSwap}
+            className="w-[3rem] transition-color duration-300 rounded-md hover:cursor-pointer hover:bg-gray-100"
+          >
+            <img src={swapIcon} alt="swap" />
+          </div>
           <div>
-            <label htmlFor="">To</label>
+            <label className="text-gray-400">From</label>
             <InputDropDown value={currency2} onChange={setCurrency2} />
           </div>
         </div>
 
         <div className="w-full flex flex-col items-start mb-[2rem]">
-          <label htmlFor="">Enter the value</label>
+          <label className="text-gray-400">Enter the value</label>
           <input
             value={inputVal}
             onChange={(event) => setInputVal(event.target.value)}
-            className="w-full p-[0.5rem] border border-solid border-[#708993] rounded-[0.5rem] focus:outline-none"
+            className="w-full p-[0.5rem] bg-gray-100 rounded-[0.5rem] focus:outline-none"
             type="text"
-            placeholder="به تومان یا دلار"
+            placeholder="in USD or IRR"
           />
         </div>
 
@@ -100,7 +105,7 @@ function App() {
         <button
           onClick={convertMoney}
           disabled={!isValid}
-          className="bg-[#708993] text-blue-50 p-[0.5rem] rounded-[0.5rem] transition-colors duration-300 hover:text-[#708993] hover:bg-[#708993]/40 hover:cursor-pointer disabled:bg-gray-300 disabled:text-[#708993]"
+          className="bg-gray-200 p-2 rounded-md transition-color duration-300 disabled:text-gray-400 hover:cursor-pointer hover:bg-gray-400 hover:text-gray-50"
         >
           Convert
         </button>

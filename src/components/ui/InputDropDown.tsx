@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import usdFlag from "../../assets/img/usd_flag.png";
+import iranFlag from "../../assets/img/iran_flag.png";
 
 type Currency = "USD" | "IRR";
 
@@ -39,7 +41,7 @@ export default function InputDropDown({ value, onChange }: InputDropDownProps) {
         onChange={(e) => onChange(e.target.value as Currency)}
         onClick={() => setOpen(!open)}
         placeholder="chose..."
-        className="w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
+        className="w-full p-2 border border-gray-400 rounded-md shadow-sm focus:outline-none cursor-pointer"
       />
       {open && (
         <div className="absolute top-full mt-1 w-full border rounded-md bg-white z-10">
@@ -48,13 +50,19 @@ export default function InputDropDown({ value, onChange }: InputDropDownProps) {
               onClick={() => handleSelect("USD")}
               className="p-2 cursor-pointer hover:bg-gray-100"
             >
-              USD
+              <div className="flex items-center">
+                <img className="w-[2rem]" src={usdFlag} alt="flag"/>
+                USD
+              </div>
             </li>
             <li
               onClick={() => handleSelect("IRR")}
               className="p-2 cursor-pointer hover:bg-gray-100"
             >
-              IRR
+              <div className="flex items-center">
+                <img className="w-[2rem]" src={iranFlag} alt="flag" />
+                IRR
+              </div>
             </li>
           </ul>
         </div>
