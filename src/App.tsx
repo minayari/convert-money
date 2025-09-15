@@ -1,10 +1,10 @@
 import * as React from "react";
-import SelectInput from "./components/SelectInput";
+import InputDropDown from "./components/ui/InputDropDown";
 
 type Currency = "USD" | "IRR";
 
 function convert(amount: number, from: Currency, to: Currency, rate: number) {
-  if (from === to) throw new Error("نمی توان ارز یکسان را تبدیل کرد!");
+  if (from === to) throw new Error("Cannot convert the same currencies");
   return from === "USD" ? amount * rate : amount / rate;
 }
 
@@ -20,12 +20,12 @@ function App() {
     const rateValue = Number(rate);
 
     if (!inputVal || isNaN(value) || value <= 0) {
-      setMessage("لطفا مقدار مبلغ معتبر وارد شود");
+      setMessage("Please enter a valid number");
       return;
     }
 
     if (!rate || isNaN(rateValue) || rateValue <= 0) {
-      setMessage("لطفا مقدار نرخ معتبر وارد شود");
+      setMessage("Please enter a valid rate");
       return;
     }
 
@@ -36,7 +36,6 @@ function App() {
           ? `${result.toLocaleString("fa-IR")}تومان`
           : `${result.toLocaleString("en-US")} $`
       );
-      setInputVal("");
     } catch (err: any) {
       setMessage(err.message);
     }
@@ -60,18 +59,31 @@ function App() {
     <>
       <div className="flex flex-col items-center justify-between bg-[#708993]/30 w-[35rem] mx-auto mt-[5rem] p-[1.5rem] rounded-[1rem]">
         <div className="w-full flex flex-col items-start mb-[2rem]">
-          <h3 className="text-[#708993]">مقدار نرخ دلار را وارد کنید:</h3>
+          <label htmlFor="">Enter the USD rate</label>
           <input
             className="w-full p-[0.5rem] border border-solid border-[#708993] rounded-[0.5rem] focus:outline-none"
             type="number"
             value={rate}
             onChange={(event) => setRate(event.target.value)}
-            placeholder="به تومان"
+            placeholder="in IRR"
           />
+        </div>
+        <div className="w-full flex items-center justify-around">
+          <div>
+            <label htmlFor="">From</label>
+            <InputDropDown value={currency1} onChange={setCurrency1} />
+          </div>
+          <button className="hover:cursor-pointer" onClick={handleSwap}>
+            Swap
+          </button>
+          <div>
+            <label htmlFor="">To</label>
+            <InputDropDown value={currency2} onChange={setCurrency2} />
+          </div>
         </div>
 
         <div className="w-full flex flex-col items-start mb-[2rem]">
-          <h3 className="text-[#708993]">مبلغ را وارد کنید:</h3>
+          <label htmlFor="">Enter the value</label>
           <input
             value={inputVal}
             onChange={(event) => setInputVal(event.target.value)}
@@ -79,21 +91,6 @@ function App() {
             type="text"
             placeholder="به تومان یا دلار"
           />
-        </div>
-
-        <div className="w-full flex items-center justify-around">
-          <h3 className="text-[#708993]">تبدیل از:</h3>
-          <h3 className="text-[#708993]">تبدیل به:</h3>
-        </div>
-        <div className="flex items-center gap-4">
-          <SelectInput value={currency1} onChange={setCurrency1} />
-          <button
-            onClick={handleSwap}
-            className="text-[1.3rem] hover:cursor-pointer"
-          >
-            🔁
-          </button>
-          <SelectInput value={currency2} onChange={setCurrency2} />
         </div>
 
         <div className="w-full text-center text-[1.3rem] mb-[1rem]">
@@ -105,7 +102,7 @@ function App() {
           disabled={!isValid}
           className="bg-[#708993] text-blue-50 p-[0.5rem] rounded-[0.5rem] transition-colors duration-300 hover:text-[#708993] hover:bg-[#708993]/40 hover:cursor-pointer disabled:bg-gray-300 disabled:text-[#708993]"
         >
-          تبدیل💰
+          Convert
         </button>
       </div>
     </>
