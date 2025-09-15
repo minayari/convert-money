@@ -46,14 +46,6 @@ function App() {
     setMessage("");
   }
 
-  const isValid =
-    inputVal !== "" &&
-    !isNaN(Number(inputVal)) &&
-    Number(inputVal) > 0 &&
-    rate !== "" &&
-    !isNaN(Number(rate)) &&
-    Number(rate) > 0;
-
   return (
     <>
       <div className="bg-gray-50 flex flex-col items-center w-[70%] mx-auto mt-[5rem] p-8 rounded-[1rem] shadow-lg shadow-gray-500/50 ">
